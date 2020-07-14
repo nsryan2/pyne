@@ -45,6 +45,9 @@ void pyne::Material::norm_comp() {
 
 
 void pyne::Material::_load_comp_protocol0(hid_t db, std::string datapath, int row) {
+  // Clear current content
+  comp.clear();
+  
   hid_t matgroup = H5Gopen2(db, datapath.c_str(), H5P_DEFAULT);
   hid_t nucset;
   double nucvalue;
@@ -99,6 +102,9 @@ void pyne::Material::_load_comp_protocol1(hid_t db, std::string datapath,
 
 void pyne::Material::_load_comp_protocol1(hid_t db, std::string datapath,
                                           std::string nucpath, int row) {
+  // Clear current content
+  comp.clear();
+  
   if (!h5wrap::path_exists(db, nucpath))
     throw std::runtime_error("No path found at the location: " + nucpath);
 
@@ -169,8 +175,7 @@ void pyne::Material::_load_comp_protocol1(hid_t db, std::string datapath,
   //
   std::string attrpath = datapath + "_metadata";
   bool attrpath_exists = h5wrap::path_exists(db, attrpath);
-  if (!attrpath_exists)
-    return;
+  if (!attrpath_exists) return;
 
   hid_t metadatapace, attrtype, metadataet, metadatalab, attrmemspace;
   int attrrank;
@@ -847,7 +852,7 @@ std::string pyne::Material::mcnp(std::string frac_type, bool mult_den) {
   // Metadata comments
   if (metadata.isMember("comments")) {
     std::string comment_string = "comments: " + metadata["comments"].asString();
-    oss << pyne::comment_line_wrapping(comment_string, comment_prefix, mcnp_line_length).str();
+    oss << pyne::comment_line_wrapping(comment_string, comment_prefix, mcnp_line_length);
   }
 
   // Metadata mat_num
@@ -884,7 +889,7 @@ std::string pyne::Material::phits(std::string frac_type, bool mult_den) {
   // Metadata comments
   if (metadata.isMember("comments")) {
     std::string comment_string = "comments: " + metadata["comments"].asString();
-    oss << pyne::comment_line_wrapping(comment_string, comment_prefix, mcnp_line_length).str();
+    oss << pyne::comment_line_wrapping(comment_string, comment_prefix, mcnp_line_length);
   }
 
   // Metadata mat_num
