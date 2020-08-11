@@ -166,7 +166,8 @@ v0.7.0 RC2
 
 **Maintenance**
 
-* Documentation Changes
+* Documentation Changes 
+
   * Credit Rochman for allowing redistribute TENDL file
   * Fix various typos
   * automatic deployment of a updated version of the website on tags
