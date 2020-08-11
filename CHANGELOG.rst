@@ -166,8 +166,7 @@ v0.7.0 RC2
 
 **Maintenance**
 
-* Documentation Changes 
-
+* Documentation Changes
   * Credit Rochman for allowing redistribute TENDL file
   * Fix various typos
   * automatic deployment of a updated version of the website on tags
@@ -218,6 +217,7 @@ v0.7.0 RC2
    * ``rxname.child()`` and ``rxname.parent()`` now accept ``str`` for the
     ``z`` argument in Python 3.
    * dagmc_bridge: added a static DagMC instance
+   * cleanup throws return from ``return (const char *)`` to simple ``return`` (it was suggested that those complicated return might cause seg fault, on some system -- OsX+conda)
 
 
 
